@@ -8,8 +8,11 @@ public class RxJava2Example {
     private static final Logger LOG = LoggerFactory.getLogger(RxJava2Example.class);
 
     public static void main(String[] args) {
-        Flowable.just("thinking", "reactive", "is", "easy", "with", "RxJava2")
-                .filter(word -> word.contains("a"))
+        // create Publisher
+        Flowable<String> words = Flowable.just("thinking", "reactive", "is", "easy", "with", "RxJava2");
+
+        // apply operators
+        words.filter(word -> word.contains("a"))
                 .sorted()
                 .subscribe(LOG::info);
     }

@@ -8,8 +8,11 @@ public class ReactorExample {
     private static final Logger LOG = LoggerFactory.getLogger(ReactorExample.class);
 
     public static void main(String[] args) {
-        Flux.just("thinking", "reactive", "is", "easy", "with", "RxJava2")
-                .filter(word -> word.contains("a"))
+        // create Publisher
+        Flux<String> words = Flux.just("thinking", "reactive", "is", "easy", "with", "RxJava2");
+
+        // apply operators
+        words.filter(word -> word.contains("a"))
                 .sort()
                 .subscribe(LOG::info);
     }
